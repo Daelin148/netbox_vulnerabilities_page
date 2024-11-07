@@ -1,4 +1,7 @@
+import random
 import requests
+
+from .tables import DeviceTable
 
 from django.shortcuts import render
 from django.views.generic import View
@@ -20,14 +23,24 @@ class VulnerabilitiesView(PermissionRequiredMixin, View):
         if not resp.ok:
             pass
 
-        for vulnerability in data.get("vulnerabilities"):
-            pprint(vulnerability)
+        payload = list()
+        
+        for vulnerability in data.get('vulnerabilities'):
+            vuln = {
+                'cve_id': vulnerability.get('cve').get('id'),
+                'product': 'product',
+                'vendor': 'vendor',
+                'product_version': 1.1,
+                'cvss_metric': round(random.uniform(1, 10))
+            }
+            payload.append(vuln)
+            
+        table = DeviceTable(payload)
         
         return render(
             request,
-            "netbox_hello_world_page/helloworld.html",
+            "netbox_vulnerabilities_page/vulnerabilities.html",
             {
-                "number": number,
-                "query_params": query_params,
+                "table": table,
             },
         )
