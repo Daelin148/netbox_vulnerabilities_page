@@ -186,7 +186,7 @@ class VulnerabilitiesView(PermissionRequiredMixin, View):
         
         return render(
             request,
-            "netbox_vulnerabilities_page/vulnerabilities.html",
+            "netbox_vulnerabilities_page/vulnerabilities_list.html",
             {
                 "table": table,
             },
