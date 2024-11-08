@@ -10,6 +10,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class VulnerabilitiesView(PermissionRequiredMixin, View):
 
+    permission_required = "ipam.view_prefix"
+
     def get(self, request):
 
         # data = requests.get(
