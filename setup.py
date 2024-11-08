@@ -2,7 +2,7 @@ from pathlib import Path
 
 from setuptools import find_packages, setup
 
-PACKAGE_NAME = "netbox-hello-world-page"
+PACKAGE_NAME = "netbox_vulnerabilities_page"
 
 
 def get_version():
