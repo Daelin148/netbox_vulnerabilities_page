@@ -1,7 +1,7 @@
 import django_tables2 as tables
 from netbox.tables import NetBoxTable
 
-class DeviceTable(NetBoxTable):
+class DeviceTable(tables.Table):
     
     cve_id = tables.Column(verbose_name='cve_id')
     product = tables.Column(verbose_name='product')
