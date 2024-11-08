@@ -1,5 +1,6 @@
 import random
 import requests
+import json
 
 from .tables import DeviceTable
 
@@ -11,18 +12,21 @@ class VulnerabilitiesView(PermissionRequiredMixin, View):
 
     def get(self, request):
 
-        data = requests.get(
-            'https://services.nvd.nist.gov/rest/json/cves/2.0'
-        )
+        # data = requests.get(
+        #     'https://services.nvd.nist.gov/rest/json/cves/2.0'
+        # )
         
-        NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
-        url_template = NVD_API_URL + "?startIndex={idx}"
+        # NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
+        # url_template = NVD_API_URL + "?startIndex={idx}"
 
-        resp = requests.get(url_template.format(idx=268000))
+        # resp = requests.get(url_template.format(idx=268000))
 
-        if not resp.ok:
-            pass
+        # if not resp.ok:
+        #     pass
 
+        with open('vulnerabilities.json') as file:
+            data = json.load(file)
+        
         payload = list()
         
         for vulnerability in data.get('vulnerabilities'):
